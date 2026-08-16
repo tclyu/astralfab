@@ -37,10 +37,12 @@ Every agent-authored **issue body, issue comment, pull-request body, and pull-re
 
 The editor's block sits on the work. An audit, when one happens, appends the auditor's block (`Role: auditor`) beneath the editor's on the same text. The absence of an auditor block is itself a record: no audit was performed. An audit by the editor's own model at the same effort is pointless and is never recorded as an audit.
 
-## Living bodies, signed comments
+## Current truth
 
-A body — issue or pull request — is a living description of its subject, edited in place. It carries exactly one editor block: the run responsible for its current state. A run that edits a body replaces the previous block with its own; blocks are never appended to a body.
+A body — issue or pull request — states current truth only. It carries exactly one editor signature block: the run responsible for its current state. Editing replaces the content and the block. Nothing is appended.
 
-History lives in comments. Every amendment to a body posts a comment stating what changed and why, signed by the amending run — that trail is the contribution record, and earlier contributors stay visible there without bloating the body. A comment is append-only and is never edited into a different claim; a correction is a new comment.
+No live text or committed file narrates a former state. Phrases such as "Changed X to Y", "removed the old …", or "the previous version said …" are forbidden. Wrong content is replaced with correct content, silently. Git and GitHub's own edit histories are the only changelog.
 
-Squash merges use the pull-request body as the commit message (`squash_merge_commit_message = PR_BODY`), so the final block lands in protected history automatically; the comment trail remains on the pull request as the amendment history. One mechanism covers tracker and history; there is no separate commit-trailer scheme to drift from it. Branch commits need no blocks — they die with the branch on merge.
+Comments carry decisions, questions, or information a reader needs now. They never record change history. A wrong comment is edited to be correct or deleted, not annotated.
+
+Squash merges use the pull-request body as the commit message (`squash_merge_commit_message = PR_BODY`), so the final block lands in protected history automatically. One mechanism covers tracker and history; there is no separate commit-trailer scheme to drift from it. Branch commits need no blocks — they die with the branch on merge.
