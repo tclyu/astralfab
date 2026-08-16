@@ -54,7 +54,7 @@ rule 5).
 | 6 | `terraform plan` (read-only) | subagent, automation token | terraform |
 | 7 | `terraform apply` — settings, integration branch, default flip, rulesets, labels, milestone | subagent, **tclyu token, owner-authorized** | terraform |
 | 8 | Verify: plan-zero, gh read-backs, negative push test | Cursor agent + subagent | terraform, gh, git |
-| 9 | Seed 14 issues + sub-issue wiring (title-checked, read-back) | subagent, automation token | gh api (W4) |
+| 9 | Seed the tracker from the templates + sub-issue wiring (title-checked, read-back) | subagent, automation token | gh api (W4) |
 | 10 | Emit acceptance queue (SHA-256 over exact UTF-8 body bytes) | Cursor agent | files in worktree |
 | 11 | Accept `Method`, `Authorization`, `Identity` | **tclyu (owner decision; posting delegated under W6)** | gh (closed the window 2026-08-16) |
 | 12 | PR lane: Record, Scaffolding, Documentation v0 | automation authors; **tclyu approves + squash-merges (human act)** | gh |
