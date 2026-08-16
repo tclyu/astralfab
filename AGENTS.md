@@ -4,9 +4,13 @@ Rules for agents in the astralfab family — all rules live in this file. What r
 
 ## Family
 
-- Two repositories, one estate, one Terraform: `astralfab` and `astralfab-artifacts`.
-- `astralfab` carries the family's single tracker and every document and deliverable: research, analysis, design, skills, code.
-- `astralfab-artifacts` is configured identically with issues off; its work is tracked on the `astralfab` tracker under the `repo:astralfab-artifacts` label. What it stores and what publishes to it is undecided Estate design work.
+```mermaid
+flowchart LR
+  family["astralfab family"] --> fab["astralfab — the tracker and everything else"]
+  family --> art["astralfab-artifacts — holds what Estate design will decide"]
+```
+
+- An issue about one repository carries its `repo:` label; no label means family-wide.
 - Codex, Cursor, and Claude Code work here concurrently under one account.
 
 ## Identity
@@ -43,12 +47,10 @@ Parent-Run-ID: <dispatching run's Run-ID; subagents only>
 
 ```mermaid
 flowchart LR
-  issue["Issue: scope + current decision"] --> tree["Own worktree under .worktrees/"] --> pr["One PR per purpose, into integration"] --> sitting["Owner sitting: batched approvals"] --> merged["Merged only when something depends on it"]
+  issue["Issue: scope + current decision"] --> tree["Own worktree under .worktrees/"] --> pr["One PR per purpose, into integration"] --> sitting["Owner sitting: batched approval and merge"]
 ```
 
-- An issue is an envelope; substance lives in files. Names: one concept, one hierarchy dimension; other facets are labels; split a child only when the parent bloats.
-- Deliverables derive from committed research and from analysis of this estate's own facts. A provisional file may break a circular dependency; it is superseded, never erased.
-- Estate configuration is declared in Terraform; records state final state and replayable operations, never a diary.
+- Records state final state and replayable operations, never a diary.
 - Touch live tracker content only on the owner's instruction; keep pending edits as local drafts.
 - When a mistake repeats, add the rule that prevents it to this file.
 
