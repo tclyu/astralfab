@@ -13,12 +13,12 @@ A horizontal rule, then fixed fields in this order:
 ```
 ---
 Agent: Cursor
-Model: fable-5
-Reasoning-Effort: unreported
+Model: claude-fable-5
+Reasoning-Effort: <as the product exposes it, else "unreported">
 Role: editor
-Task-ID: 20809632-e1da-4bab-ba68-d287262a63ae
-Run-ID: 712a8e08-599e-48f3-a1c4-193763a5eb24
-Parent-Run-ID: <subagents only>
+Task-ID: <conversation or task identifier issued by the agent product>
+Run-ID: <self-issued UUIDv4, one per execution>
+Parent-Run-ID: <dispatching run's Run-ID; subagents only>
 ```
 
 - **`Agent`** — the agent product: `Cursor`, `Codex`, `Claude Code`, or the
@@ -36,7 +36,10 @@ Parent-Run-ID: <subagents only>
 - **`Parent-Run-ID`** — present only on subagent blocks: the dispatching run.
 
 All fields are stated truthfully or `unreported`; a fabricated field is an
-identity violation, not a formatting error.
+identity violation, not a formatting error. A value someone merely told the
+session is a claim, not a detection: before writing `unreported`, the session
+checks whether its product records its own configuration somewhere readable
+(model slug, effort, task identifier) and signs with what it finds there.
 
 ## Coverage
 
