@@ -2,7 +2,7 @@
 
 This file is the single rulebook for agents in the astralfab family; anything `bootstrap/terraform/` already enforces is omitted.
 
-## Family
+## Repositories
 
 ```mermaid
 flowchart LR
@@ -14,11 +14,14 @@ flowchart LR
 - `astralfab-artifacts`: contents await Estate design.
 - An issue specific to one repository carries its `repo:` label; an unlabeled issue applies family-wide.
 
-## Identity
+## Accounts
 
 - Codex, Cursor, and Claude Code all act as `tclyu-automation`; acting as `tclyu` requires the owner's explicit permission each time.
 - Anything Terraform, gh, or the API cannot do: write one self-contained instruction file, with its auxiliary attachments, for the owner or Codex Computer Use to execute.
-- Every issue and pull-request body ends with the identity block:
+
+## Attribution
+
+- Every issue body, pull-request body, and commit message ends with the identity block. Do not append a `Co-authored-by` trailer.
 
 ```text
 ---
@@ -31,11 +34,12 @@ Run-ID: <self-issued UUIDv4, one per run>
 Dispatched-By: <the dispatching run's Run-ID; subagents only>
 ```
 
-## Truth
+## Files
 
-- State only current truth: replace incorrect content, never narrate the change; git and GitHub hold the history.
 - Commit only durable content: no live facts, no machine paths, no tracker content. Everything else belongs in git-ignored `.staging/`, whose README states its purpose.
+- State only current truth: replace incorrect content, never narrate the change; git and GitHub hold the history.
 - Superseded content moves to `.staging/retired/` for future reuse.
+- A record captures the final state and the operations that reproduce it, never a diary.
 - Legacy material supplies ideas only; never cite it.
 
 ## Documentation
@@ -44,14 +48,13 @@ Dispatched-By: <the dispatching run's Run-ID; subagents only>
 - State nothing the AI can infer, unless practice shows the inference failing.
 - Use an illustration wherever it conveys more than prose.
 
-## Work
+## Workflow
 
 ```mermaid
 flowchart LR
   issue[Issue: scope and current decision] --> tree[Own worktree under .worktrees/] --> pr[One PR per purpose, into integration] --> sitting[Owner sitting: batched approval and merge]
 ```
 
-- A record captures the final state and the operations that reproduce it, never a diary.
 - Edit live tracker content only on the owner's instruction; hold pending edits as local drafts.
 - When a mistake repeats, add the preventing rule to this file.
 
