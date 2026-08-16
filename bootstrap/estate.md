@@ -57,30 +57,20 @@ issues on for astralfab, off for artifacts.
 
 ## Tracker
 
-14 issues in one tree, one hierarchy dimension (domain of work):
+One tree on the tracker repository, one hierarchy dimension (domain of work),
+governed by the `Method` doctrine; owner acceptance of the three doctrine
+bodies is what closes a bootstrap window. The seeded containers and their
+bodies are the templates in `bootstrap/seed/issues/` — the template set is the
+source of truth for what bootstrap files, and the live tracker is the source of
+truth for what exists now (numbers, states, and everything filed since). Facet
+labels and the milestone are stated as data in `bootstrap/terraform/`; labels
+carry facet dimensions only (absence of a repo label means family-wide), and no
+label duplicates the hierarchy.
 
-- `AstralFab` (root)
-  - `Governance`: `Method`, `Authorization`, `Identity` (the three doctrine
-    bodies; owner acceptance of all three is what closes the bootstrap window)
-  - `Repositories`: `astralfab`, `astralfab-artifacts`
-  - `Research`: `Documentation`, `Estate`
-  - `Delivery`: `Record`, `Scaffolding`
+## Repository content
 
-Issue numbers, live states, and acceptance timestamps are tracker facts: look
-them up on the tracker. This file names only what must exist; a rebuilt estate
-satisfies it with different numbers.
-
-Labels carry facet dimensions only, one MECE dimension per prefix: `repo:astralfab`,
-`repo:artifacts` (absence = family-wide). No label duplicates the hierarchy.
-Milestone: `bootstrap`.
-
-## Repository content (landed by the bootstrap pull requests)
-
-- `.gitignore`, `.staging/README.md` — staging law (PR: Record)
-- `bootstrap/estate.md`, `bootstrap/operations.md`, `bootstrap/token-ledger.md`
-  (PR: Record)
-- `bootstrap/terraform/` — the scaffolding module (PR: Scaffolding)
-- `bootstrap/seed/` — issue templates + seed script (PR: Scaffolding)
-- `bootstrap/watch/` — body-digest watch, read-only (PR: Scaffolding)
-- `docs/documentation/convention-v0.md` — provisional documentation convention
-  (PR: Documentation)
+Structure, not inventory: the staging law lives at the repository root
+(`.gitignore`, `.staging/README.md`); `bootstrap/` holds the record and the
+scaffolding; `docs/` holds conventions and research. File lists are derived
+facts — git is the source of truth for what landed and when, the pull-request
+lane for why.

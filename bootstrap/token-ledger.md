@@ -1,9 +1,15 @@
-# Token-usage ledger — delegated execution vs inline
+# Token-usage ledger — the bootstrap build (closed record)
 
-Measures what delegation to subagents costs and saves. Provider token counts are
-not exposed to agents, so all figures are byte-derived estimates (tokens ≈ bytes/4),
-consistent across rows and therefore fair for comparison, approximate in absolute
-terms.
+A closed, dated measurement record of one build, taken 2026-08-16 and never
+updated (persistence doctrine: closed records). It is not a running ledger and
+gains no rows from later work: ongoing measurement is kept locally per worktree
+and lands only as new closed records when it justifies a procedure change — the
+standing procedure is `docs/governance/delegation.md`.
+
+Measures what delegation to subagents cost and saved during bootstrap. Provider
+token counts are not exposed to agents, so all figures are byte-derived
+estimates (tokens ≈ bytes/4), consistent across rows and therefore fair for
+comparison, approximate in absolute terms.
 
 Columns:
 
@@ -37,24 +43,13 @@ delegation on top of it added little. Conclusion for future builds: write script
 that absorb output, and delegate only steps whose raw output is large and whose
 report can be small.
 
-## Model tiering (policy)
+## Tiering disclosure (measured fact of this build)
 
-Choose the agent tier for the task before delegating, not the tier at hand:
-
-- Mechanical, fully specified packets (run these commands, report these fields)
-  go to the cheapest adequate tier (Cursor Auto class) — it costs almost nothing.
-- Premium models are for judgment: authoring, diagnosis, design, and audits.
-- If a cheap run shows quality problems, escalate: audit with a stronger model.
-  An audit by the same model at the same effort as the editor is pointless.
-- Two failure shapes, both waste: a premium model on a mechanical task (a gun on
-  a chicken) burns the tier difference; an inadequate model retrying a hard task
-  (a thousand bullets for a cow) burns more than one strong shot would have.
-
-**Disclosure for this build:** all three subagent packets ran on the
-orchestrator's own premium tier (claude-fable-5, effort xhigh) by default, not by decision — flagged
-by the owner as mis-tiered. Every packet was mechanical; the Auto tier would
-have sufficed at a fraction of the cost. Future builds default delegation to the
-cheap tier and record the tier decision per row.
+All three subagent packets ran on the orchestrator's own premium tier
+(claude-fable-5, effort xhigh) by default, not by decision — flagged by the
+owner as mis-tiered. Every packet was mechanical; the cheap tier would have
+sufficed at a fraction of the cost. The standing tier-selection procedure this
+prompted lives in `docs/governance/delegation.md`, not here.
 
 ## Per-action accounting (byte-derived estimates, tokens ≈ bytes/4)
 

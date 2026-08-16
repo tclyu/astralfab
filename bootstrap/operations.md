@@ -74,11 +74,10 @@ rule 5).
   nothing landed.
 - **Apply result (2026-08-16):** `Apply complete! Resources: 2 imported, 11
   added, 2 changed, 0 destroyed.` — exactly the reviewed plan.
-- **Seed result (2026-08-16):** 14 issues created in template order
-  (AstralFab, Governance, Method, Authorization, Identity, Repositories,
-  astralfab, astralfab-artifacts, Research, Documentation, Estate, Delivery,
-  Record, Scaffolding); 13 sub-issue edges wired; every body verified by
-  read-back against its template's exact bytes.
+- **Seed result (2026-08-16):** the tracker was seeded from the templates in
+  `bootstrap/seed/issues/`, in template order; the sub-issue tree was wired and
+  every body verified by read-back against its template's exact bytes. Counts
+  and titles live in the template set, not here.
 
 ## Irreducible human acts (a scaffold must stop for these)
 

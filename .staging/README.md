@@ -24,7 +24,8 @@ Rules, for every agent and every session:
    self-contained facts *about* ephemeral process — digests, byte counts,
    outcomes, the name of a branch that once existed — is fine; a committed
    reference that only resolves inside someone's scratch space is a defect.
-   (Naming this law file is allowed: it is committed.)
+   (Naming this law file is allowed: it is committed.) The general law for what
+   any committed file may contain is `docs/governance/persistence.md`.
 
 If you are an agent and unsure whether a file belongs in `.staging/` or in the
 repository: it belongs in `.staging/` until an issue envelope and a pull request
