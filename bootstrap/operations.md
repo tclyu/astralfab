@@ -74,7 +74,7 @@ rule 5).
   nothing landed.
 - **Apply result (2026-08-16):** `Apply complete! Resources: 2 imported, 11
   added, 2 changed, 0 destroyed.` — exactly the reviewed plan.
-- **Seed result (2026-08-16):** 14 issues created as #1–#14 in template order
+- **Seed result (2026-08-16):** 14 issues created in template order
   (AstralFab, Governance, Method, Authorization, Identity, Repositories,
   astralfab, astralfab-artifacts, Research, Documentation, Estate, Delivery,
   Record, Scaffolding); 13 sub-issue edges wired; every body verified by

@@ -59,12 +59,16 @@ issues on for astralfab, off for artifacts.
 
 14 issues in one tree, one hierarchy dimension (domain of work):
 
-- `AstralFab` #1 (root)
-  - `Governance` #2: `Method` #3, `Authorization` #4, `Identity` #5 (the three
-    doctrine bodies; owner-accepted 2026-08-16, which closed the bootstrap window)
-  - `Repositories` #6: `astralfab` #7, `astralfab-artifacts` #8
-  - `Research` #9: `Documentation` #10, `Estate` #11
-  - `Delivery` #12: `Record` #13, `Scaffolding` #14
+- `AstralFab` (root)
+  - `Governance`: `Method`, `Authorization`, `Identity` (the three doctrine
+    bodies; owner acceptance of all three is what closes the bootstrap window)
+  - `Repositories`: `astralfab`, `astralfab-artifacts`
+  - `Research`: `Documentation`, `Estate`
+  - `Delivery`: `Record`, `Scaffolding`
+
+Issue numbers, live states, and acceptance timestamps are tracker facts: look
+them up on the tracker. This file names only what must exist; a rebuilt estate
+satisfies it with different numbers.
 
 Labels carry facet dimensions only, one MECE dimension per prefix: `repo:astralfab`,
 `repo:artifacts` (absence = family-wide). No label duplicates the hierarchy.
