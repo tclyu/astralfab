@@ -1,30 +1,17 @@
 # Operations — how the estate was reached, as a reusable sequence
 
-Not a diary. Each operation states actor, channel, and — where a value had to
-transit a wrong state (chicken-and-egg) — the transitional value, the final value,
-and the flip condition. A scaffolding implementation replays the final-state
-operations and only needs the transitional notes where its target also pre-exists.
+Not a diary. Each operation states actor, channel, and — where a value had to transit a wrong state (chicken-and-egg) — the transitional value, the final value, and the flip condition. A scaffolding implementation replays the final-state operations and only needs the transitional notes where its target also pre-exists.
 
 ## Bootstrap window
 
-Open from repository creation; closed when the owner accepts the three doctrine
-bodies (`Method`, `Authorization`, `Identity`). Acts inside the window (ungoverned
-by definition, enumerated here so an auditor reads design, not defect):
+Open from repository creation; closed when the owner accepts the three doctrine bodies (`Method`, `Authorization`, `Identity`). Acts inside the window (ungoverned by definition, enumerated here so an auditor reads design, not defect):
 
-- W1. Repositories created by owner with auto-init (outside Terraform; adopted
-  later by import blocks). A fresh scaffold creates them in-module instead.
-- W2. Working branch `agent/bootstrap` carries no issue number — the tracker did
-  not exist yet. All later branches are `agent/<issue>-<slug>`.
-- W3. Staging law (`.gitignore` + `.staging/README.md`) authored and used before
-  it landed; effective locally as untracked files until merged.
-- W4. Seed templates and scripts run from `.staging/` before the repository could
-  host them; landed bytes asserted identical to the bytes that ran.
-- W5. The three doctrine bodies are created and filled before any doctrine exists
-  to govern those writes; their acceptance is the act that closes this window.
-- W6. The three acceptance comments were posted by an agent under the owner's
-  explicit, recorded authorization ("overrides the no-agent-acceptance rule this
-  once"), with the owner credential, identity-verified, read back under the
-  automation credential. Outside the window this is forbidden by Authorization.
+- W1. Repositories created by owner with auto-init (outside Terraform; adopted later by import blocks). A fresh scaffold creates them in-module instead.
+- W2. Working branch `agent/bootstrap` carries no issue number — the tracker did not exist yet. All later branches are `agent/<issue>-<slug>`.
+- W3. Staging law (`.gitignore` + `.staging/README.md`) authored and used before it landed; effective locally as untracked files until merged.
+- W4. Seed templates and scripts run from `.staging/` before the repository could host them; landed bytes asserted identical to the bytes that ran.
+- W5. The three doctrine bodies are created and filled before any doctrine exists to govern those writes; their acceptance is the act that closes this window.
+- W6. The three acceptance comments were posted by an agent under the owner's explicit, recorded authorization ("overrides the no-agent-acceptance rule this once"), with the owner credential, identity-verified, read back under the automation credential. Outside the window this is forbidden by Authorization.
 
 ## Value flips (set one value, then change it)
 
@@ -39,10 +26,7 @@ by definition, enumerated here so an auditor reads design, not defect):
 
 ## Operations log (final working form; failed attempts omitted, deviations noted)
 
-Worktree, branch, and staging names below are historical facts about ephemeral
-space: nothing in this record resolves to them, and none of them survives its
-pull request. Committed files must never depend on such locations (staging law,
-rule 5).
+Worktree, branch, and staging names below are historical facts about ephemeral space: nothing in this record resolves to them, and none of them survives its pull request. Committed files must never depend on such locations (staging law, rule 5).
 
 | # | operation | actor | channel |
 | --- | --- | --- | --- |
@@ -61,23 +45,10 @@ rule 5).
 
 ## Discovered constraints (facts a re-implementation must know)
 
-- **Ruleset bypass actors are invisible to non-admin readers.** The API returns
-  `bypass_actors: null` to a write-role credential, so a Terraform drift check
-  under the automation credential reports phantom drift on every ruleset that has
-  bypass actors. Truthful drift checks run under the owner credential. (Measured
-  2026-08-16 after first apply; plan-zero under the owner-written state confirmed
-  the live value `RepositoryRole 5, pull_request` exists.)
-- **Negative probe result (2026-08-16):** an empty-commit push to `integration`
-  as the automation account was rejected with both expected violations — "Cannot
-  update this protected ref" (owner-merges-only) and "Changes must be made
-  through a pull request" (protected-lines). The probe commit was reset away;
-  nothing landed.
-- **Apply result (2026-08-16):** `Apply complete! Resources: 2 imported, 11
-  added, 2 changed, 0 destroyed.` — exactly the reviewed plan.
-- **Seed result (2026-08-16):** the tracker was seeded from the templates in
-  `bootstrap/seed/issues/`, in template order; the sub-issue tree was wired and
-  every body verified by read-back against its template's exact bytes. Counts
-  and titles live in the template set, not here.
+- **Ruleset bypass actors are invisible to non-admin readers.** The API returns `bypass_actors: null` to a write-role credential, so a Terraform drift check under the automation credential reports phantom drift on every ruleset that has bypass actors. Truthful drift checks run under the owner credential. (Measured 2026-08-16 after first apply; plan-zero under the owner-written state confirmed the live value `RepositoryRole 5, pull_request` exists.)
+- **Negative probe result (2026-08-16):** an empty-commit push to `integration` as the automation account was rejected with both expected violations — "Cannot update this protected ref" (owner-merges-only) and "Changes must be made through a pull request" (protected-lines). The probe commit was reset away; nothing landed.
+- **Apply result (2026-08-16):** `Apply complete! Resources: 2 imported, 11 added, 2 changed, 0 destroyed.` — exactly the reviewed plan.
+- **Seed result (2026-08-16):** the tracker was seeded from the templates in `bootstrap/seed/issues/`, in template order; the sub-issue tree was wired and every body verified by read-back against its template's exact bytes. Counts and titles live in the template set, not here.
 
 ## Irreducible human acts (a scaffold must stop for these)
 

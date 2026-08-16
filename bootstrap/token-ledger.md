@@ -1,26 +1,15 @@
 # Token-usage ledger — the bootstrap build (closed record)
 
-A closed, dated measurement record of one build, taken 2026-08-16 and never
-updated (persistence doctrine: closed records). It is not a running ledger and
-gains no rows from later work: ongoing measurement is kept locally per worktree
-and lands only as new closed records when it justifies a procedure change — the
-standing procedure is `docs/governance/delegation.md`.
+A closed, dated measurement record of one build, taken 2026-08-16 and never updated (persistence doctrine: closed records). It is not a running ledger and gains no rows from later work: ongoing measurement is kept locally per worktree and lands only as new closed records when it justifies a procedure change — the standing procedure is `docs/governance/delegation.md`.
 
-Measures what delegation to subagents cost and saved during bootstrap. Provider
-token counts are not exposed to agents, so all figures are byte-derived
-estimates (tokens ≈ bytes/4), consistent across rows and therefore fair for
-comparison, approximate in absolute terms.
+Measures what delegation to subagents cost and saved during bootstrap. Provider token counts are not exposed to agents, so all figures are byte-derived estimates (tokens ≈ bytes/4), consistent across rows and therefore fair for comparison, approximate in absolute terms.
 
 Columns:
 
-- **packet** — bytes of the instruction packet handed to the subagent (delegation
-  overhead paid).
-- **report** — bytes of the subagent's final report (what returned into the
-  orchestrator's context).
-- **observed** — bytes of command output the subagent saw (what stayed out of the
-  orchestrator's context).
-- **est. saved tokens** — (observed − report − packet) / 4. Negative means
-  delegation cost more than inline execution.
+- **packet** — bytes of the instruction packet handed to the subagent (delegation overhead paid).
+- **report** — bytes of the subagent's final report (what returned into the orchestrator's context).
+- **observed** — bytes of command output the subagent saw (what stayed out of the orchestrator's context).
+- **est. saved tokens** — (observed − report − packet) / 4. Negative means delegation cost more than inline execution.
 
 | task | mode | packet B | report B | observed B | est. saved tokens | note |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -34,22 +23,11 @@ Columns:
 
 ## Result
 
-Net estimated saving ≈ 7,200 tokens across the build, almost all of it from one
-row: delegating `terraform init/validate/plan` (~29.5 KB of output reduced to a
-~0.9 KB report). The apply and seed rows were nearly neutral — their packets and
-reports cost about what their outputs would have. The seed row shows the deeper
-pattern: a purpose-built script kept ~45 KB of API JSON out of *every* context;
-delegation on top of it added little. Conclusion for future builds: write scripts
-that absorb output, and delegate only steps whose raw output is large and whose
-report can be small.
+Net estimated saving ≈ 7,200 tokens across the build, almost all of it from one row: delegating `terraform init/validate/plan` (~29.5 KB of output reduced to a ~0.9 KB report). The apply and seed rows were nearly neutral — their packets and reports cost about what their outputs would have. The seed row shows the deeper pattern: a purpose-built script kept ~45 KB of API JSON out of *every* context; delegation on top of it added little. Conclusion for future builds: write scripts that absorb output, and delegate only steps whose raw output is large and whose report can be small.
 
 ## Tiering disclosure (measured fact of this build)
 
-All three subagent packets ran on the orchestrator's own premium tier
-(claude-fable-5, effort xhigh) by default, not by decision — flagged by the
-owner as mis-tiered. Every packet was mechanical; the cheap tier would have
-sufficed at a fraction of the cost. The standing tier-selection procedure this
-prompted lives in `docs/governance/delegation.md`, not here.
+All three subagent packets ran on the orchestrator's own premium tier (claude-fable-5, effort xhigh) by default, not by decision — flagged by the owner as mis-tiered. Every packet was mechanical; the cheap tier would have sufficed at a fraction of the cost. The standing tier-selection procedure this prompted lives in `docs/governance/delegation.md`, not here.
 
 ## Per-action accounting (byte-derived estimates, tokens ≈ bytes/4)
 
@@ -70,13 +48,6 @@ prompted lives in `docs/governance/delegation.md`, not here.
 | acceptance comments posted + read back | orchestrator (claude-fable-5, xhigh) | ~150 |
 | PR lane: graduation, commits, pushes, PR bodies | orchestrator (claude-fable-5, xhigh) | ~1,300 out |
 
-"Absorbed" = output the subagent observed that never entered the orchestrator's
-context; "returned" = the report that did. Inline "in" = command output and
-documents read into the orchestrator's context; "out" = content authored by it.
-These are the per-action inputs for future procedure optimization; the absolute
-numbers are estimates, the ratios are the signal.
+"Absorbed" = output the subagent observed that never entered the orchestrator's context; "returned" = the report that did. Inline "in" = command output and documents read into the orchestrator's context; "out" = content authored by it. These are the per-action inputs for future procedure optimization; the absolute numbers are estimates, the ratios are the signal.
 
-Rule of thumb this ledger exists to test: delegation pays on output-heavy,
-content-light tasks (terraform runs, batch API mutations with read-backs) and
-costs on content-bearing tasks (authoring files), because authored content must
-transit the packet either way.
+Rule of thumb this ledger exists to test: delegation pays on output-heavy, content-light tasks (terraform runs, batch API mutations with read-backs) and costs on content-bearing tasks (authoring files), because authored content must transit the packet either way.
