@@ -1,4 +1,4 @@
-# Per-worktree scratch and drafts. Contents never ship. See .staging/README.md.
+# Staging scratch (estate-local on the primary clone; task scratch in each worktree). Contents never ship. See .staging/README.md.
 .staging/*
 !.staging/README.md
 
