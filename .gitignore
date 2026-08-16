@@ -1,0 +1,9 @@
+# Per-worktree scratch and drafts. Contents never ship. See .staging/README.md.
+.staging/*
+!.staging/README.md
+
+# Terraform working data is disposable and never committed.
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
