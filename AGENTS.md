@@ -6,15 +6,17 @@ This file is the single rulebook for agents in the astralfab family; anything `b
 
 ```mermaid
 flowchart LR
-  family[astralfab family] --> fab["astralfab: tracker and all content"]
-  family --> art["astralfab-artifacts: contents await Estate design"]
+  family[astralfab family] --> fab[astralfab]
+  family --> art[astralfab-artifacts]
 ```
 
+- `astralfab`: the tracker and all content.
+- `astralfab-artifacts`: contents await Estate design.
 - An issue specific to one repository carries its `repo:` label; an unlabeled issue applies family-wide.
 
 ## Identity
 
-- Codex, Cursor, and Claude Code write concurrently as `tclyu-automation`; each act as `tclyu` requires the owner's explicit permission.
+- Codex, Cursor, and Claude Code all act as `tclyu-automation`; acting as `tclyu` requires the owner's explicit permission each time.
 - Anything Terraform, gh, or the API cannot do: write one self-contained instruction file, with its auxiliary attachments, for the owner or Codex Computer Use to execute.
 - Every issue and pull-request body ends with the identity block:
 
@@ -46,7 +48,7 @@ Dispatched-By: <the dispatching run's Run-ID; subagents only>
 
 ```mermaid
 flowchart LR
-  issue["Issue: scope + current decision"] --> tree["Own worktree under .worktrees/"] --> pr["One PR per purpose, into integration"] --> sitting["Owner sitting: batched approval and merge"]
+  issue[Issue: scope and current decision] --> tree[Own worktree under .worktrees/] --> pr[One PR per purpose, into integration] --> sitting[Owner sitting: batched approval and merge]
 ```
 
 - A record captures the final state and the operations that reproduce it, never a diary.
