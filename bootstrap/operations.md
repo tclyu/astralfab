@@ -48,7 +48,7 @@ Worktree, branch, and staging names below are historical facts about ephemeral s
 - **Ruleset bypass actors are invisible to non-admin readers.** The API returns `bypass_actors: null` to a write-role credential, so a Terraform drift check under the automation credential reports phantom drift on every ruleset that has bypass actors. Truthful drift checks run under the owner credential. (Measured 2026-08-16 after first apply; plan-zero under the owner-written state confirmed the live value `RepositoryRole 5, pull_request` exists.)
 - **Negative probe result (2026-08-16):** an empty-commit push to `integration` as the automation account was rejected with both expected violations — "Cannot update this protected ref" (owner-merges-only) and "Changes must be made through a pull request" (protected-lines). The probe commit was reset away; nothing landed.
 - **Apply result (2026-08-16):** `Apply complete! Resources: 2 imported, 11 added, 2 changed, 0 destroyed.` — exactly the reviewed plan.
-- **Seed result (2026-08-16):** the tracker was seeded from the templates in `bootstrap/seed/issues/`, in template order; the sub-issue tree was wired and every body verified by read-back against its template's exact bytes. Counts and titles live in the template set, not here.
+- **Seed result (2026-08-16):** the tracker was seeded from a local template packet (format: `bootstrap/seed/TEMPLATE.md`), in packet order; the sub-issue tree was wired and every body verified by read-back against its template's exact bytes. Bodies and titles live on the tracker, not here and not in the repository.
 
 ## Irreducible human acts (a scaffold must stop for these)
 

@@ -30,7 +30,7 @@ The values live once, as data, in `bootstrap/terraform/`; this file restates non
 
 ## Tracker
 
-One tree on the tracker repository, one hierarchy dimension (domain of work), governed by the `Method` doctrine; owner acceptance of the three doctrine bodies is what closes a bootstrap window. The seeded containers and their bodies are the templates in `bootstrap/seed/issues/` — the template set is the source of truth for what bootstrap files, and the live tracker is the source of truth for what exists now (numbers, states, and everything filed since). Facet labels and the milestone are stated as data in `bootstrap/terraform/`; labels carry facet dimensions only (absence of a repo label means family-wide), and no label duplicates the hierarchy.
+One tree on the tracker repository, one hierarchy dimension (domain of work), governed by the `Method` doctrine; owner acceptance of the three doctrine bodies is what closes a bootstrap window. Issue content is never committed: seeding runs from a local template packet through `bootstrap/seed/seed.py` (format: `bootstrap/seed/TEMPLATE.md`), each body verified by read-back at seed time, and the live tracker is thereafter the sole source of truth for what exists (bodies, numbers, states, and everything filed since). Facet labels and the milestone are stated as data in `bootstrap/terraform/`; labels carry facet dimensions only (absence of a repo label means family-wide), and no label duplicates the hierarchy.
 
 ## Repository content
 
