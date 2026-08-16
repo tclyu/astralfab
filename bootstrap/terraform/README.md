@@ -25,7 +25,7 @@ A plan reporting zero changes is the standing proof that live state matches the 
 ## What this module deliberately does not manage
 
 - **Collaborators** — asserted in `checks.tf`, never written. Membership is a two-party act (grant by owner, acceptance by invitee) that no declarative tool can complete truthfully.
-- **Issues, comments, pull requests** — living documents with their own writers. A declarative tool holding them would revert legitimate edits as "drift". The tracker is seeded once by `bootstrap/seed/` and evolves by governed acts.
+- **Issues, comments, pull requests** — living documents with their own writers. A declarative tool holding them would revert legitimate edits as "drift". The tracker is seeded once by `bootstrap/seed/seed.py` from a local template packet and evolves by governed acts.
 - **Repository creation** — this family's repos pre-existed the module and were adopted by import (a recorded bootstrap exception). A fresh scaffold of a new family may create them in-module instead by dropping the import blocks.
 
 ## Scaffolding a new family

@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Seed the family tracker from the templates in issues/.
+"""Seed the family tracker from a local template packet.
+
+The packet is a directory of NN-slug.md files in the format documented by
+TEMPLATE.md beside this script. It is local input, never committed: issue
+content lives on the tracker (persistence doctrine).
 
 Behavior, by doctrine (Method, Identity):
 - verifies the acting login before any mutation and stops on mismatch;
@@ -8,7 +12,7 @@ Behavior, by doctrine (Method, Identity):
 - wires the sub-issue hierarchy idempotently;
 - mutates nothing else, and never edits an existing issue.
 
-Usage: python3 seed.py [--repo OWNER/NAME] [--expect-login LOGIN] [--dry-run]
+Usage: python3 seed.py --templates DIR [--repo OWNER/NAME] [--expect-login LOGIN] [--dry-run]
 """
 
 import argparse
@@ -17,8 +21,6 @@ import json
 import subprocess
 import sys
 from pathlib import Path
-
-TEMPLATES = sorted((Path(__file__).parent / "issues").glob("*.md"))
 
 
 def gh(args, inp=None):
@@ -57,6 +59,8 @@ def parse_template(path):
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--templates", required=True,
+                    help="local packet directory of NN-slug.md files (see TEMPLATE.md)")
     ap.add_argument("--repo", default="tclyu/astralfab")
     ap.add_argument("--expect-login", default="tclyu-automation")
     ap.add_argument("--dry-run", action="store_true")
@@ -66,7 +70,10 @@ def main():
     if login != opts.expect_login:
         sys.exit(f"STOP: acting login is {login!r}, expected {opts.expect_login!r}")
 
-    templates = [parse_template(p) for p in TEMPLATES]
+    paths = sorted(Path(opts.templates).glob("*.md"))
+    if not paths:
+        sys.exit(f"STOP: no templates found in {opts.templates!r}")
+    templates = [parse_template(p) for p in paths]
 
     existing = {}
     for issue in gh_json(["api", f"repos/{opts.repo}/issues?state=all&per_page=100",
