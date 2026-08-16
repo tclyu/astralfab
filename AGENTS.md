@@ -42,6 +42,7 @@ Dispatched-By: <the dispatching run's Run-ID; subagents only>
 - Superseded content moves to the primary clone's `.staging/retired/` for future reuse.
 - A record captures the final state and the operations that reproduce it, never a diary.
 - Legacy material supplies ideas only; never cite it.
+- Adopt a rule only when a real problem already has a consumer; otherwise leave it as provisional research, not as active law.
 
 ## Documentation
 
