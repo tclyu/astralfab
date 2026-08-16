@@ -6,8 +6,8 @@ This file is the single rulebook for agents in the astralfab family; anything `b
 
 ```mermaid
 flowchart LR
-  family["astralfab family"] --> fab["astralfab — the tracker and everything else"]
-  family --> art["astralfab-artifacts — holds what Estate design will decide"]
+  family[astralfab family] --> fab["astralfab: tracker and all content"]
+  family --> art["astralfab-artifacts: contents await Estate design"]
 ```
 
 - An issue specific to one repository carries its `repo:` label; an unlabeled issue applies family-wide.
@@ -15,8 +15,8 @@ flowchart LR
 ## Identity
 
 - Codex, Cursor, and Claude Code write concurrently as `tclyu-automation`; each act as `tclyu` requires the owner's explicit permission.
-- Operations no API supports: provide the owner exact steps to execute.
-- Every issue and pull-request body ends with exactly one editor block, signed by the run responsible for its current state; an audit appends one auditor block beneath it. Nothing follows the block.
+- Anything Terraform, gh, or the API cannot do: write one self-contained instruction file, with its auxiliary attachments, for the owner or Codex Computer Use to execute.
+- Every issue and pull-request body ends with the identity block:
 
 ```text
 ---
@@ -39,7 +39,7 @@ Dispatched-By: <the dispatching run's Run-ID; subagents only>
 ## Documentation
 
 - One paragraph per line.
-- State nothing the reader can infer, unless practice shows the inference failing. Use plain language.
+- State nothing the AI can infer, unless practice shows the inference failing.
 - Use an illustration wherever it conveys more than prose.
 
 ## Work
