@@ -24,7 +24,6 @@ evidence.
 
 ## Form
 
-- One file, one subject. Markdown. Lives under `docs/`, lands by pull request
-  citing its envelope issue.
-- Provisional files state their provisional status and this convention's name
-  in a header line, so re-grading under v1 is a search, not an excavation.
+- One file, one subject. Markdown. Lives under `docs/`, lands by pull request citing its envelope issue.
+- Prose is never hard-wrapped: one logical line per paragraph and per list item. Newlines are structural only — headings, list boundaries, table rows, code fences. Display width is the reader's setting, not the author's; a manual line break inside a paragraph is a display decision baked into content, and it turns every later edit into a whole-paragraph rewrap.
+- Provisional files state their provisional status and this convention's name in a header line, so re-grading under v1 is a search, not an excavation.
