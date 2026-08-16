@@ -39,6 +39,11 @@ by definition, enumerated here so an auditor reads design, not defect):
 
 ## Operations log (final working form; failed attempts omitted, deviations noted)
 
+Worktree, branch, and staging names below are historical facts about ephemeral
+space: nothing in this record resolves to them, and none of them survives its
+pull request. Committed files must never depend on such locations (staging law,
+rule 5).
+
 | # | operation | actor | channel |
 | --- | --- | --- | --- |
 | 1 | Create repos (auto-init, public) | tclyu | GitHub UI (pre-existing; W1) |

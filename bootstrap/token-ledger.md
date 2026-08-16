@@ -37,6 +37,50 @@ delegation on top of it added little. Conclusion for future builds: write script
 that absorb output, and delegate only steps whose raw output is large and whose
 report can be small.
 
+## Model tiering (policy)
+
+Choose the agent tier for the task before delegating, not the tier at hand:
+
+- Mechanical, fully specified packets (run these commands, report these fields)
+  go to the cheapest adequate tier (Cursor Auto class) — it costs almost nothing.
+- Premium models are for judgment: authoring, diagnosis, design, and audits.
+- If a cheap run shows quality problems, escalate: audit with a stronger model.
+  An audit by the same model at the same effort as the editor is pointless.
+- Two failure shapes, both waste: a premium model on a mechanical task (a gun on
+  a chicken) burns the tier difference; an inadequate model retrying a hard task
+  (a thousand bullets for a cow) burns more than one strong shot would have.
+
+**Disclosure for this build:** all three subagent packets ran on the
+orchestrator's own premium tier (fable-5) by default, not by decision — flagged
+by the owner as mis-tiered. Every packet was mechanical; the Auto tier would
+have sufficed at a fraction of the cost. Future builds default delegation to the
+cheap tier and record the tier decision per row.
+
+## Per-action accounting (byte-derived estimates, tokens ≈ bytes/4)
+
+| action | actor (model) | est. tokens |
+| --- | --- | --- |
+| staging law + record skeletons authored | orchestrator (fable-5) | ~2,400 out |
+| provider capability verification (docs read) | orchestrator (fable-5) | ~4,500 in |
+| Terraform module authored (7 files) | orchestrator (fable-5) | ~2,300 out |
+| terraform init/validate/plan run | subagent (fable-5; Auto would suffice) | ~7,400 absorbed; ~230 returned |
+| plan inspection + repo read-backs | orchestrator (fable-5) | ~2,500 in |
+| terraform apply + plan-zero run | subagent (fable-5; Auto would suffice) | ~1,500 absorbed; ~280 returned |
+| ruleset visibility diagnosis + negative push probe | orchestrator (fable-5) | ~1,800 in |
+| 14 issue templates authored | orchestrator (fable-5) | ~3,300 out |
+| seed + digest-watch scripts authored | orchestrator (fable-5) | ~1,800 out |
+| seed dry run + live seeding | subagent (fable-5; Auto would suffice) | ~700 absorbed (+~11,000 kept out by script); ~250 returned |
+| graph, label, milestone verification | orchestrator (fable-5) | ~900 in |
+| acceptance queue + convention v0 authored | orchestrator (fable-5) | ~1,100 out |
+| acceptance comments posted + read back | orchestrator (fable-5) | ~150 |
+| PR lane: graduation, commits, pushes, PR bodies | orchestrator (fable-5) | ~1,300 out |
+
+"Absorbed" = output the subagent observed that never entered the orchestrator's
+context; "returned" = the report that did. Inline "in" = command output and
+documents read into the orchestrator's context; "out" = content authored by it.
+These are the per-action inputs for future procedure optimization; the absolute
+numbers are estimates, the ratios are the signal.
+
 Rule of thumb this ledger exists to test: delegation pays on output-heavy,
 content-light tasks (terraform runs, batch API mutations with read-backs) and
 costs on content-bearing tasks (authoring files), because authored content must

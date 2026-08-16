@@ -16,6 +16,22 @@ One machine account, used by all agents (Codex, Cursor, Claude). Identity is
 verified (`gh api user`) before every mutation batch. Credentials are fetched by
 name (`gh auth token -u <login>`), never via `gh auth switch`.
 
+## Attribution
+
+The account name carries no authorship information — every agent writes as the
+one automation login — so authorship is recorded in the work itself. Every pull
+request body (which becomes the squash-commit message) ends with trailers:
+
+- `Editor: <client>/<model>` — who authored the change, with effort level where
+  the client exposes one.
+- `Auditor: <client>/<model>`, or `none` — who reviewed the work beyond the
+  editor.
+
+Audit policy: an audit by the same model at the same effort as the editor is
+pointless and is not performed. When an audit is warranted — quality in doubt,
+or high blast radius — the auditor must be a more capable model than the editor.
+Not all work warrants an audit; `none` is an honest and common value.
+
 ## Repositories
 
 Two, both public, both owned by `tclyu`:

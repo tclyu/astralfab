@@ -18,6 +18,13 @@ Rules, for every agent and every session:
    instruction packets and raw outputs, Terraform plan/state files, working notes.
    If a file is worth keeping, give it a home in the repository through a pull
    request; if it is not, it stays here and dies here.
+5. **Committed files never point here.** No committed file may cite a path under
+   `.staging/`, a worktree-local path, a machine path, or any other
+   non-persistent location as something a reader could follow. Recording
+   self-contained facts *about* ephemeral process — digests, byte counts,
+   outcomes, the name of a branch that once existed — is fine; a committed
+   reference that only resolves inside someone's scratch space is a defect.
+   (Naming this law file is allowed: it is committed.)
 
 If you are an agent and unsure whether a file belongs in `.staging/` or in the
 repository: it belongs in `.staging/` until an issue envelope and a pull request
