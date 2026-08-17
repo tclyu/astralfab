@@ -1,13 +1,15 @@
-# `.staging/` — per-worktree scratch. Nothing in here ships.
+# `.staging/` — local scratch. Nothing here ships except this README.
 
-This folder is the working space of the worktree it sits in. Every file in it except this README is git-ignored (see the repository `.gitignore`) and must never be committed.
+Every file under `.staging/` except this README is git-ignored and must never be committed. A file leaves staging only by being written to its real repository path and landed through a reviewed pull request into `integration`.
 
-Rules, for every agent and every session:
+## Two roles
 
-1. **Contents never ship.** A file leaves `.staging/` only by being written to its real repository path and landed through a reviewed pull request into `integration`. After it lands, delete the staging copy.
-2. **Graduation is by explicit path.** Stage files for commit one path at a time. Never `git add -A`, never `git add .`.
-3. **Per-worktree, not shared.** Each worktree has its own `.staging/`. Nothing outside a worktree may depend on this folder's contents — it dies with the worktree.
-4. **What belongs here:** drafts before their destination exists, subagent instruction packets and raw outputs, Terraform plan/state files, working notes. If a file is worth keeping, give it a home in the repository through a pull request; if it is not, it stays here and dies here.
-5. **Committed files never point here.** No committed file may cite a path under `.staging/`, a worktree-local path, a machine path, or any other non-persistent location as something a reader could follow. Recording self-contained facts *about* ephemeral process — digests, byte counts, outcomes, the name of a branch that once existed — is fine; a committed reference that only resolves inside someone's scratch space is a defect. (Naming this law file is allowed: it is committed.) The general law for what any committed file may contain is `docs/governance/persistence.md`.
+**Estate-local** (primary clone only): durable local material that must survive worktree deletion — issue-update drafts, superseded content in `retired/`, the local token ledger, seed packets, and similar. Agents write these only into the primary clone's `.staging/`, never into a worktree's.
 
-If you are an agent and unsure whether a file belongs in `.staging/` or in the repository: it belongs in `.staging/` until an issue envelope and a pull request give it a home.
+**Task scratch** (each worktree): throwaway packets, notes, and tool outputs for that worktree's branch. It dies with the worktree. Do not keep estate drafts here.
+
+## Rules
+
+1. **Contents never ship.** Graduation is by explicit path into the repository via PR. Never `git add -A` or `git add .` for staging contents.
+2. **Committed files never point here.** No committed file may cite a path under `.staging/`, a worktree path, or a machine path as something a reader could follow.
+3. **If unsure:** put it in the primary clone's `.staging/` when it must outlive a worktree; otherwise keep it in the current worktree's `.staging/`.

@@ -1,6 +1,10 @@
-# Per-worktree scratch and drafts. Contents never ship. See .staging/README.md.
+# Staging scratch (estate-local on the primary clone; task scratch in each worktree). Contents never ship. See .staging/README.md.
 .staging/*
 !.staging/README.md
+
+# Third-party archives are inert feedstock; only the README ships. See third_party/README.md.
+third_party/**
+!third_party/README.md
 
 # Terraform working data is disposable and never committed.
 **/.terraform/

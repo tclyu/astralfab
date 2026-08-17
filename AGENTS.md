@@ -36,11 +36,13 @@ Dispatched-By: <the dispatching run's Run-ID; subagents only>
 
 ## Files
 
-- Commit only durable content: no live facts, no machine paths, no tracker content. Everything else belongs in git-ignored `.staging/`, whose README states its purpose.
+- Commit only durable content: no live facts, no machine paths, no tracker content.
+- Estate-local drafts (issue updates, `retired/`, local ledger) live in the primary clone's `.staging/` so they survive worktree deletion. Each worktree's `.staging/` is task scratch only. See `.staging/README.md`.
 - State only current truth: replace incorrect content, never narrate the change; git and GitHub hold the history.
-- Superseded content moves to `.staging/retired/` for future reuse.
+- Superseded content moves to the primary clone's `.staging/retired/` for future reuse.
 - A record captures the final state and the operations that reproduce it, never a diary.
 - Legacy material supplies ideas only; never cite it.
+- Adopt a rule only when a real problem already has a consumer; otherwise leave it as provisional research, not as active law.
 
 ## Documentation
 
